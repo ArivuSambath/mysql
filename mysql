@@ -1,0 +1,119 @@
+
+ CREATE DATABASE arivu 
+ use arivu;
+ 
+-- CUSTOMERS:
+
+ CREATE TABLE  customers (
+ id INT(20) NOT NULL auto_increment,
+ customers_name VARCHAR(50) NOT NULL, 
+ email VARCHAR(50) NOT NULL, 
+ adress  VARCHAR(50) NOT NULL,
+ PRIMARY KEY (id)
+ ) ENGINE = InnoDB;
+ 
+-- INSERT DATA INTO A TABLE
+ INSERT INTO customers
+ (id, customers_name, email, adress )
+ VALUES
+ (NULL, "arivu", "arivu237", "78/36annanagar" );
+
+
+ INSERT INTO customers
+ (id, customers_name, email, adress )
+ VALUES
+ (NULL, "priya", "priya57", "79/36annanagar" ),
+ (NULL, "raj", "raj264", "80/36annanagar" );
+
+-- SELECT* FROM customers
+
+-- ORDERS
+
+ CREATE TABLE  orders (
+  id INT(20) NOT NULL auto_increment,
+  customers_id VARCHAR(50) NOT NULL, 
+  orders VARCHAR(50) NOT NULL, 
+  orders_date VARCHAR(50) NOT NULL, 
+  total_amount  VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
+  ) ENGINE = InnoDB;
+ 
+  INSERT INTO orders
+ ( id, customers_id, orders, orders_date, total_amount)
+  VALUES
+  (NULL, "1", "a", "10.07.2024","100"),
+  (NULL, "2", "b", "10.07.2024","250"),
+  (NULL, "3", "c", "10.07.2024","390");
+ 
+ -- SELECT* FROM orders
+ 
+  CREATE TABLE  products (
+  id INT(20) NOT NULL auto_increment,
+  product_name  VARCHAR(50) NOT NULL, 
+  price VARCHAR(50) NOT NULL, 
+  product_description VARCHAR(50) NOT NULL, 
+  PRIMARY KEY (id)
+  ) ENGINE = InnoDB;
+ 
+ 
+  INSERT INTO products
+  ( id, product_name, price, product_description)
+  VALUES
+  (NULL, "colourbook", "100.00"," using good trees"),
+  (NULL, "paintbox", "250.00", "it is 100% nature and pure"),
+  (NULL, "parkerpen", "390.00","rich history of innovation and belief");
+ 
+ 
+-- SELECT * FROM orders
+
+  WHERE  orders_date > NOW() - INTERVAL 30 day;
+  1. this query is used to retrieved the placement of last 30 days orders from the orders table.alter
+ 
+  --SELECT * FROM orders
+ 
+  SELECT customers_id, COUNT(total_amount) 
+  FROM orders GROUP BY customers_id
+  2. its show the total amount of the each order place by the customers
+ 
+ 
+  UPDATE products SET  price = 45.00 WHERE id = 9;   
+  3. it replace the price of the product c value into 45.00  
+-- SELECT * FROM products
+
+
+ ALTER TABLE products 
+ ADD discout VARCHAR(50) NOT NULL ;
+ 4. this query is used to make or added the new column in products table
+-- SELECT*FROM products
+
+
+
+ SELECT * FROM products LIMIT 3
+ 5. it is used for select the top three highest price products
+
+
+ SELECT customers_name FROM customers INNER JOIN orders ON  customers.id = "1"
+ 6. this query is express the person who order the product A.
+
+
+ SELECT customers_name,orders_date FROM customers 
+ INNER JOIN orders ON customers.id = orders.customers_id 
+ 7. this query is used for join the columnsof customers_name and orders_date from the table of customers andd orders
+
+
+ SELECT * FROM products WHERE price > 150
+ 8. this query is used for retrieve the total amount greater than 150 in orders table
+ 
+ CREATE TABLE orderitem (
+ id INT(20) NOT NULL auto_increment,
+ order_id INT(20) NOT NULL,
+ product_id INT(20) NOT NULL,
+ quantity INT(20) NOT NULL, 
+ PRIMARY KEY  (id)
+ ) ENGINE = InnoDB;
+ 9. this query is used to create a new database orderitem and update the orders table to reference the orderitem table.
+ 
+ 
+ SELECT AVG(total_amount) FROM orders;
+ 10. this retrieve is used for average total of all orders 
+ 
